@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Text</title>
+    <style>
+        /* This CSS ensures the styling applies to the entire page */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        /* The body is set up as a flex container to enable easy centering */
+        body {
+            display: flex;
+            justify-content: center; /* This centers the content horizontally */
+            align-items: center;     /* This centers the content vertically */
+            background-color: #f0f0f0; /* A light background color for contrast */
+        }
+
+        /* This styles the text itself */
+        .centered-text {
+            font-size: 10vw; /* Using viewport width (vw) for a responsive large font size */
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Media query for smaller screens to adjust font size */
+        @media (max-width: 768px) {
+            .centered-text {
+                font-size: 15vw; /* Make font even larger relative to the screen on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="centered-text">水谷ADMIN JAGA</div>
+
+</body>
+</html>
