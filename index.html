@@ -16,6 +16,7 @@
         /* The body is set up as a flex container to enable easy centering */
         body {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center; /* This centers the content horizontally */
             align-items: center;     /* This centers the content vertically */
             background-color: #f0f0f0; /* A light background color for contrast */
@@ -27,6 +28,7 @@
             font-weight: bold;
             color: #333;
             text-align: center;
+            width: 100%;
         }
 
         .word {
@@ -49,7 +51,7 @@
 
     <div class="centered-text" id="centeredText"></div>
 
-    <div class="centered-text" style="text-size:10px">(click me)</div>
+    <div class="centered-text" style="font-size:10px; clear: both;">(click me)</div>
     <script>
         // The text to display, split into words
         const text = "水谷 ADMIN JAGA";
