@@ -29,6 +29,14 @@
             text-align: center;
         }
 
+        .word {
+            cursor: pointer;
+            color: #111;
+            padding: 0 0.2em;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
         /* Media query for smaller screens to adjust font size */
         @media (max-width: 768px) {
             .centered-text {
@@ -39,7 +47,67 @@
 </head>
 <body>
 
-    <div class="centered-text">水谷ADMIN JAGA</div>
+    <div class="centered-text" id="centeredText"></div>
+
+    <div class="centered-text" style="text:10px">(click me)</div>
+    <script>
+        // The text to display, split into words
+        const text = "水谷 ADMIN JAGA";
+        const container = document.getElementById('centeredText');
+        const words = text.split(' ');
+
+        // Helper to generate a random RGB color
+        function randomRGB() {
+            const r = Math.floor(Math.random() * 156) + 100;
+            const g = Math.floor(Math.random() * 156) + 100;
+            const b = Math.floor(Math.random() * 156) + 100;
+            return `rgb(${r},${g},${b})`;
+        }
+
+        // Animate through a rainbow of colors
+        function startRGBAnimation(span) {
+            let frame = 0;
+            const totalFrames = 60;
+            let running = true;
+
+            function animate() {
+                if (!running) return;
+                // HSV rainbow effect
+                const hue = (frame * 6) % 360;
+                span.style.color = `hsl(${hue}, 100%, 50%)`;
+                frame++;
+                if (frame < totalFrames) {
+                    span._rgbTimeout = setTimeout(animate, 1000 / 60);
+                } else {
+                    span.style.color = "#111";
+                    running = false;
+                }
+            }
+            animate();
+
+            // Stop any previous animation if clicked again
+            span._stopRGB = () => {
+                running = false;
+                clearTimeout(span._rgbTimeout);
+                span.style.color = "#111";
+            };
+        }
+
+        // Render each word as a span
+        words.forEach((word, i) => {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = word;
+            span.addEventListener('click', function () {
+                if (span._stopRGB) span._stopRGB();
+                startRGBAnimation(span);
+            });
+            container.appendChild(span);
+            if (i < words.length - 1) {
+                container.appendChild(document.createTextNode(' '));
+            }
+        });
+    </script>
 
 </body>
 </html>
